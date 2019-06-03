@@ -6,21 +6,28 @@ const welcome = "Welcome to React!";
 
 class App extends Component {
   render() {
-
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Welcome text="Welcome To React" />
+          <Welcome text={this.state.input} />
           <p>
             Edit <code>src/App.js</code> and save to reload.
-        </p>
+          </p>
+
+
+          <input type="text" value={this.state.input} onChange={this.updateInput} />
+          <input type="text" ref={(input) => this.input_text = input} />
+          <button onClick={this.submit}>Show Value</button>
+          
+          
+          
           <a
             className="App-link"
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
-          >
+            >
             Learn React
         </a>
         </header>
@@ -31,7 +38,8 @@ class App extends Component {
 
 class Welcome extends Component {
   render() {
-    return <h1 className="App-title">{this.props.text}</h1> 
+    let { text } = this.props;
+    return <h1 className="App-title">{text}</h1>
   }
 }
 
