@@ -5,12 +5,11 @@ import Movie from './Movie'
 
 
 class App extends Component {
-
   state = {
     movies: []
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     try {
       const res = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=f1bbc42b748c46f36a6ad798cf90524d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1');
       const movies = await res.json();
@@ -19,14 +18,13 @@ class App extends Component {
         movies: movies.results
       })
 
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
 
   render() {
-    
-    let {movies} = this.state;
+    let { movies } = this.state;
     console.log(movies)
 
     return (
