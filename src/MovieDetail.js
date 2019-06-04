@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+import { Poster } from './Movie';
 
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w300/';
 const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280/';
@@ -28,14 +30,21 @@ class MovieDetail extends Component {
       const { movie } = this.state;
 
       return (
-        <>
-          <img src={`${BACKDROP_PATH}${movie.backdrop_path}`} alt={movie.title} />
-          <img src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
+        <MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
+
+          <Poster src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
           <h3>{movie.release_date}</h3>
           <p>{movie.overview}</p>
-        </>
+        </MovieWrapper>
       );
     }
 }
 
 export default MovieDetail;
+
+const MovieWrapper = styled.div`
+  position: relative;
+  padding-top: 50vh;
+  background: url(${props => props.backdrop}) no-repeat;
+  background-size: cover;
+`;
