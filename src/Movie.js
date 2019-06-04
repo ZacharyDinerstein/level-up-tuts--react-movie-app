@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w300/';
 
 const Movie = ({ movie }) => (
-  <div>
-    <Link to="/test">
-      <img src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
-    </Link>
-  </div>
+  <Link to={`/${movie.id}`}>
+    <img src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
+  </Link>
 );
 
 Movie.propTypes = {
