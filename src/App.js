@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Movie from './Movie'
 
-const welcome = "Welcome to React!";
+let movies = [
+  {
+    id: 1,
+    title: "Star Wars",
+    desc: "Spaceships!!!"
+  },
+  {
+    id: 2,
+    title: "Star Trek"
+  },
+  {
+    id: 3,
+    title: "The Big Lebowski"
+  }
+]
 
 class App extends Component {
   render() {
@@ -10,18 +25,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            Learn React
-        </a>
         </header>
+        {movies.map(movie => <Movie key={movie.id} movie={movie} />)}
       </div>
     );
   }
