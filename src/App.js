@@ -1,41 +1,33 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import Movie from './Movie'
+import MoviesList from './MoviesList';
 
 
-class App extends Component {
-  state = {
-    movies: []
-  }
+const Test = () => (
+  <h1>TEST</h1>
+);
 
-  async componentDidMount() {
-    try {
-      const res = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=f1bbc42b748c46f36a6ad798cf90524d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1');
-      const movies = await res.json();
-
-      this.setState({
-        movies: movies.results
-      })
-
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  render() {
-    let { movies } = this.state;
-    console.log(movies)
-
-    return (
-      <div className="App">
-        <header className="App-header">
+const App = () => (
+  <Router>
+    <div className="App">
+      <header className="App-header">
+        <Link to="/">
           <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        {movies.map(movie => <Movie key={movie.id} movie={movie} />)}
-      </div>
-    );
-  }
-}
+        </Link>
+      </header>
+      <Switch>
+        <Route exact path="/" component={MoviesList} />
+        <Route path="/test" component={Test} />
+      </Switch>
+    </div>
+  </Router>
+);
 
 export default App;

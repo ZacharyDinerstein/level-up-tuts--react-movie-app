@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-export default class Movie extends Component {
-	static propTypes = {
-		movie: PropTypes.shape({
-			title: PropTypes.string.isRequired,
-		})
-	}
+const POSTER_PATH = 'http://image.tmdb.org/t/p/w300/';
 
-	render() {
-		const { movie } = this.props;
+const Movie = ({ movie }) => (
+  <div>
+    <Link to="/test">
+      <img src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
+    </Link>
+  </div>
+);
 
-		return (
-			<div>
-				<h3>{movie.title}</h3>
-			</div>
-		)
-	}
-}
+Movie.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default Movie;
